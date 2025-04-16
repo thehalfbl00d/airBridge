@@ -6,11 +6,8 @@ import subprocess
 
 port = 8000
 ip = '192.168.253.136'
-url = f"http://{ip}:{port}/"
+url = f"http://{ip}:{port}"
 
-def changeDirectory(url, file, direction):
-    if direction == 1:
-        url+=f"{file}/"
 
 def getDirectoryList(url):
     response = requests.get(url)
@@ -20,10 +17,12 @@ def getDirectoryList(url):
     print("List of Directories : \n")
     for link in links:
         print(link.get('href'))
-
+    if len(links) == 0:
+        print("Empty Directory! Maybe this directory doesnt exists yet")
 
 os.system('clear')
 
+os.chdir('received/')
 
 def menu():
     global url
@@ -31,18 +30,17 @@ def menu():
 
         os.system('clear')
         print(f"Current Directory : {url}")
-
         getDirectoryList(url)
-
         print('''
 1. Download a File
 2. Go into A directory
 3. Go back A directory
 4. Exit 
-''')
-        opt = int(input("\nWhat You Wanna do: "))
+            ''')
+        
+        opt = input("\nWhat You Wanna do: ")
 
-        if opt == 1:
+        if opt == '1':
             fileName = str(input("Which File To Download : "))
             dsuccess = True
             while dsuccess:
@@ -52,21 +50,23 @@ def menu():
                 except:
                     print("Error!File Not Found")
                     dsuccess = True
-        if opt == 2:
+        elif opt == '2':
             fileName = str(input("Which Directory To Go : "))
             dsuccess = True
             while dsuccess:
                 try:
-                    url+=f"{fileName}"
+                    url+=f"/{fileName}"
                     dsuccess = False
                 except:
                     print("Error!File Not Found")
                     dsuccess = True
-        if opt == 3:
+        elif opt == '3':
             url = url.rsplit('/',1)[0]
-        if opt == 4:
+        elif opt == '4':
             print("Thanks for using me!")
             break
+        # else:
+        #     print("Invalid Option! Try Again")
 menu()
 
 
