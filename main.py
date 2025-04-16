@@ -8,6 +8,9 @@ port = 8000
 ip = '192.168.253.136'
 url = f"http://{ip}:{port}/"
 
+def changeDirectory(url, file, direction):
+    if direction == 1:
+        url+=f"{file}/"
 
 def getDirectoryList(url):
     response = requests.get(url)
@@ -23,6 +26,7 @@ os.system('clear')
 
 
 def menu():
+    global url
     while(1):
 
         os.system('clear')
@@ -43,14 +47,26 @@ def menu():
             dsuccess = True
             while dsuccess:
                 try:
-                    subprocess.run(["curl","-O", f"{url}/filename"])
+                    subprocess.run(["curl","-O", f"{url}/{fileName}"])
                     dsuccess = False
                 except:
                     print("Error!File Not Found")
                     dsuccess = True
-
-
+        if opt == 2:
+            fileName = str(input("Which Directory To Go : "))
+            dsuccess = True
+            while dsuccess:
+                try:
+                    url+=f"{fileName}"
+                    dsuccess = False
+                except:
+                    print("Error!File Not Found")
+                    dsuccess = True
+        if opt == 3:
+            url = url.rsplit('/',1)[0]
+        if opt == 4:
+            print("Thanks for using me!")
+            break
 menu()
 
-def changeDirectory(url, file, direction):
-    url+=f"/{file}"
+
