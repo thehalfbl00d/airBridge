@@ -1,3 +1,5 @@
-### Team Infernals
+# We Lost
 
-A simple workaround for transferring files from android to any device, especially macos having an average transfer speed of 3 MBps
+### Anyway I will continue developing this really cool project
+
+### Happy that our was not a bumass chatgpt wrapper
