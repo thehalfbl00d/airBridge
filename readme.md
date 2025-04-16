@@ -1,5 +1,5 @@
 # We Lost
 
-### Anyway I will continue developing this really cool project
+### Anyway I will continue developing this project
 
 ### Happy that our was not a bumass chatgpt wrapper
