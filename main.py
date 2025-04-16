@@ -6,11 +6,13 @@ import subprocess
 
 
 os.system('clear')
+
+print("Example: 192.168.253.136")
+print("Port: 8000")
+
 ip = str(input('Enter Your Target Ip Address: '))
 port = int(input("Enter yout target port: "))
 
-port = 8000
-ip = "192.168.253.136"
 url = f"http://{ip}:{port}"
 
 
