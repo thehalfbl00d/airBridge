@@ -4,12 +4,18 @@ from bs4 import BeautifulSoup
 import os
 import subprocess
 
+
+os.system('clear')
+ip = str(input('Enter Your Target Ip Address: '))
+port = int(input("Enter yout target port: "))
+
 port = 8000
-ip = '192.168.253.136'
+ip = "192.168.253.136"
 url = f"http://{ip}:{port}"
 
 
 def getDirectoryList(url):
+
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     links = soup.find_all('a')
@@ -20,8 +26,8 @@ def getDirectoryList(url):
     if len(links) == 0:
         print("Empty Directory! Maybe this directory doesnt exists yet")
 
-os.system('clear')
 
+os.system('clear')
 os.chdir('received/')
 
 def menu():
@@ -32,12 +38,15 @@ def menu():
         print(f"Current Directory : {url}")
         getDirectoryList(url)
         print('''
-1. Download a File
-2. Go into A directory
-3. Go back A directory
-4. Exit 
-            ''')
-        
+            **
+|          MENU            |
+            **
+| 1. Download a File       |
+| 2. Go into A directory   |
+| 3. Go back A directory   |
+| 4. Exit                  |
+            ** 
+''')
         opt = input("\nWhat You Wanna do: ")
 
         if opt == '1':
@@ -68,5 +77,3 @@ def menu():
         # else:
         #     print("Invalid Option! Try Again")
 menu()
-
-
